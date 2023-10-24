@@ -1,0 +1,2 @@
+# Gyakorlat
+gyakorlathoz
