@@ -11,7 +11,7 @@ random.shuffle(key)
 
 #ENCRYPT
 plain_text = beleptetes.jelszo_bekerese()
-x=Snake.score
+score=Snake.score
 key = "your_encryption_key_here"  # Az itt lévő "your_encryption_key_here" helyére írd be a saját titkosítási kulcsodat
 
 def szam_titkositas(plain_text):
@@ -53,17 +53,17 @@ def nagybetu_titkositas(plain_text):
             cipher_text += char
     return cipher_text
 
-def tikositas_pontszerint(x, plain_text):
-    if x >= 2:
+def tikositas_pontszerint(score, plain_text):
+    if score >= 2:
         plain_text = szam_titkositas(plain_text)
-    if x >= 3:
+    if score >= 3:
         plain_text = kisbetu_titkositas(plain_text)
-    if x == 4:
+    if score == 4:
         plain_text = nagybetu_titkositas(plain_text)
 
     return plain_text
 
-encrypted_text = tikositas_pontszerint(x, plain_text)
+encrypted_text = tikositas_pontszerint(score, plain_text)
 felh=beleptetes.felhasznalonev()
 def fajl():
     with open('jelszo.txt', 'r') as f:
@@ -86,7 +86,7 @@ print(f"encrypted message: {encrypted_text}")
 fajl()
 
 #DECRYPT
-"""cipher_text = input("Enter a message to encrypt: ")
+cipher_text = input("Enter a message to encrypt: ")
 plain_text = ""
 
 for letter in cipher_text:
@@ -94,4 +94,4 @@ for letter in cipher_text:
     plain_text += chars[index]
 
 print(f"encrypted message: {cipher_text}")
-print(f"original message : {plain_text}")"""
+print(f"original message : {plain_text}")
