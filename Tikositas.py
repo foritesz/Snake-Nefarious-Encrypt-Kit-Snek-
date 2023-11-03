@@ -34,6 +34,7 @@ def szam_titkositas(plain_text):
     for char in plain_text:
         if char.isdigit() and char not in processed_chars:
             index = int(char)
+            #original_char = plain_text[index]
             print(f"szám:{index}")
             if 0 <= index < len(key):
                 cipher_text += key[index]
@@ -49,7 +50,8 @@ def kisbetu_titkositas(plain_text):
     cipher_text = ""
     for char in plain_text:
         if char.islower() and char not in processed_chars:
-            index = ord(char) - ord('a')
+            index = ord(char) - ord('a') #ord() függvény az adott karakter Unicode kódját adja vissza úgy hogy a kis abetütől kezdi ek nézni
+            #original_char = plain_text[index]
             print(f"kisbetu:{index}")
             if 0 <= index < len(key):
                 cipher_text += key[index]
@@ -66,6 +68,7 @@ def nagybetu_titkositas(plain_text):
     for char in plain_text:
         if char.isupper() and char not in processed_chars:
             index = ord(char) - ord('A')
+            #original_char = plain_text[index]
             print(f"nagybetu:{index}")
             if 0 <= index < len(key):
                 cipher_text += key[index]
@@ -89,6 +92,17 @@ def tikositas_pontszerint(score, plain_text):
 
     return plain_text
 
+"""def unicode(plain_text):
+    keykod=""
+    for letter in plain_text:
+        index = chars.index(letter)
+        text=plain_text[index]
+        index2=str(index)
+        keykod +=index2+','+text
+
+    return keykod"""
+
+key2=unicode(plain_text)
 encrypted_text = tikositas_pontszerint(score, plain_text)
 felh=beleptetes.felhasznalonev()
 
@@ -96,7 +110,7 @@ def fajl():
     with open('jelszo.txt', 'r') as f:
         lines = f.readlines()
 
-    with open('jelszo.txt', 'w') as f:
+    with (open('jelszo.txt', 'w') as f):
         for line in lines:
             parts = line.strip().split(';')
             if len(parts) == 2 and felh in parts[0]:
