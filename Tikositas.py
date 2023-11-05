@@ -11,7 +11,7 @@ random.shuffle(key)
 
 #ENCRYPT
 plain_text = beleptetes.jelszo_bekerese()
-score=4
+score=1
 processed_chars = set() # egy halmazt a már feldolgozott karakterek tárolására
 eredeti_chars=set()
 
@@ -132,7 +132,10 @@ def visszafejtes(cipher_text, key):
     plain_text = ""
     for letter in cipher_text:
         index = key.index(letter)
-        plain_text += chars[index]
+        if index in eredeti_chars:
+            plain_text += chars[index]
+        else:
+            plain_text += key[index]
 
     return plain_text
 
