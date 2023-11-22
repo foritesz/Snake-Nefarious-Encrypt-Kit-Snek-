@@ -85,7 +85,7 @@ def next_turn(snake, food, speed):
 
         food = Food()
 
-        speed = score_szemleles(score)  # Módosítjuk a játék sebességét a Score_szemleles osztály segítségével
+        speed = score_szemleles(score)
 
     else:
 
