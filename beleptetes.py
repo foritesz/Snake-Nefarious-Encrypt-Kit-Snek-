@@ -15,7 +15,7 @@ def regisztracio():
             break
     if sikeres:
         with open("jelszo.txt", "a",encoding="utf-8") as fajl:
-            fajl.write("\n"+felhasznalo_email + ";" + felhasznalo_jelszava)
+            fajl.write(felhasznalo_email + ";" + felhasznalo_jelszava+"\n")
     return sikeres
 
 def felhasznalonev():
@@ -77,7 +77,7 @@ def felhasznalo_ellenorzese(felhasznalo):
                 jelszo=user[1]
     return jelszo
 
-def beleptetes():
+"""def beleptetes():
     ok_regisztracio=True
     jelszo=felhasznalo_ellenorzese(felhasznalonev())
     if jelszo=="":
@@ -92,7 +92,7 @@ def beleptetes():
             print("Nem sikerült kitalálni a jelszót!")
             ok_regisztracio=False
             break
-    return ok_regisztracio
+    return ok_regisztracio"""
 def jelszo_hossz():
 
     jelszohossz=jelszo_bekerese()
@@ -105,10 +105,9 @@ if __name__=="__main__":
 
 
     if regisztracio():
-       if beleptetes():
+
            print("Üdv a fedélzeten!")
-       else:
-           print("Nem sikerült belépnie!")
+
     else:
         print("A regisztráció miatt, nem történt beléptetés")
 
