@@ -148,6 +148,17 @@ def reset_fields():
 root = tk.Tk()
 root.title("Bejelentkezés")
 
+# Méretek és helyköz beállítása
+window_width = 300
+window_height = 200
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+x_coordinate = (screen_width - window_width) // 2
+y_coordinate = (screen_height - window_height) // 2
+
+root.geometry(f"{window_width}x{window_height}+{x_coordinate}+{y_coordinate}")
+root.configure(padx=10, pady=10)
+
 # Felhasználónév és jelszó beviteli mezők létrehozása
 felhasznalonev_label = tk.Label(root, text="Felhasználónév:")
 felhasznalonev_label.pack()

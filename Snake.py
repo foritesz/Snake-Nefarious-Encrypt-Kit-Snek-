@@ -143,7 +143,7 @@ def game_over():
 
 
 window = Tk()
-window.title("Snake game")
+window.title("Snake")
 window.resizable(False, False)
 
 score = 0
