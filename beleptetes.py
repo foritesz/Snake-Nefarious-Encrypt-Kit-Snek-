@@ -19,7 +19,7 @@ def regisztracio():
     return sikeres
 
 def felhasznalonev():
-    felhasznalo_email=input("Kérek egy felhasználói nevet (email): ")
+    felhasznalo_email=input("Kérek egy felhasználói nevet: ")
     while " " in felhasznalo_email:
         felhasznalo_email = input("Nem megfelelő az email!\nKérek egy felhasználói nevet: ")
     return felhasznalo_email
