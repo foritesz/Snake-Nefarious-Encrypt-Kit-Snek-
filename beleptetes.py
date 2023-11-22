@@ -1,4 +1,6 @@
 # Beléptető rendszer
+import Snake
+
 
 def regisztracio():
     sikeres = True
@@ -110,5 +112,5 @@ if __name__=="__main__":
     else:
         print("A regisztráció miatt, nem történt beléptetés")
 
-    import Snake
+
     import Tikositas

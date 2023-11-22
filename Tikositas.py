@@ -1,17 +1,18 @@
-import random
+import tkinter as tk
+from tkinter import messagebox
+
 import string
 import beleptetes
 import Snake
 
 chars = " " +string.digits + string.ascii_letters
 chars = list(chars)
-key = chars.copy()
+key = "gkZHXi7D28mBpU9e0Lt54McR3OWq6dEfKwFhsvNnAJPYrQuICjSx1yVbzLopTaGyjXq"+" "
 
-random.shuffle(key)
 
 #ENCRYPT
 plain_text = beleptetes.jelszo_bekerese()
-score=1
+score=Snake.score
 processed_chars = set() # egy halmazt a már feldolgozott karakterek tárolására
 eredeti_chars=set() #egy halmazt a nem feldolgozott karakterek tárolására
 
@@ -22,11 +23,11 @@ def szam_titkositas(plain_text):
             index = chars.index(char)
             eredeti_chars.add(index)
             #print(f"szám:{index}")
-            if 0 <= index < len(key):
-                cipher_text += key[index]
-                processed_chars.add(key[index])  # Jelöld meg, hogy ezt a karaktert már feldolgoztad
-            else:
-                cipher_text += char
+            #if 0 <= index < len(key):  azt ellenőrzi, hogy az index változó egy érvényes tartományban van-e. Itt a kulcsban való helynek 0 és a kulcs hossza között kell lennie.
+            cipher_text += key[index]
+            processed_chars.add(key[index])  # Jelöld meg, hogy ezt a karaktert már feldolgoztad
+            #else:
+                #cipher_text += char
         else:
             cipher_text += char
 
@@ -39,11 +40,11 @@ def kisbetu_titkositas(plain_text):
             index = chars.index(char)
             eredeti_chars.add(index)
             #print(f"kisbetu:{index}")
-            if 0 <= index < len(key):
-                cipher_text += key[index]
-                processed_chars.add(key[index])  # Jelöld meg, hogy ezt a karaktert már feldolgoztad
-            else:
-                cipher_text += char
+            #if 0 <= index < len(key):
+            cipher_text += key[index]
+            processed_chars.add(key[index])  # Jelöld meg, hogy ezt a karaktert már feldolgoztad
+            #else:
+                #cipher_text += char
         else:
             cipher_text += char
 
@@ -56,11 +57,11 @@ def nagybetu_titkositas(plain_text):
             index = chars.index(char)
             eredeti_chars.add(index)
             #print(f"nagybetu:{index}")
-            if 0 <= index < len(key):
-                cipher_text += key[index]
-                processed_chars.add(key[index])  # Jelöld meg, hogy ezt a karaktert már feldolgoztad
-            else:
-                cipher_text += char
+            #if 0 <= index < len(key):
+            cipher_text += key[index]
+            processed_chars.add(key[index])  # Jelöld meg, hogy ezt a karaktert már feldolgoztad
+            #else:
+                #cipher_text += char
         else:
             cipher_text += char
 
@@ -113,3 +114,56 @@ print(f"decrypted message: {decrypted_text}")
 
 #print(processed_chars)
 #print(eredeti_chars)
+
+def bejelentkezes():
+    felhasznalonev = felhasznalonev_entry.get()
+    jelszo = jelszo_entry.get()
+
+    with open("jelszo.txt", "r") as file:
+        adatok = file.readlines()
+
+    bejelentkezes_sikeres = False
+    for sor in adatok:
+        try:
+            felhasznalonev_fajl, jelszo_titkos = sor.strip().split(";")
+        except ValueError:
+            messagebox.showerror("Hiba", "Hibás formátum a fájlban.")
+            return
+
+        if felhasznalonev == felhasznalonev_fajl and jelszo == decrypted_text:
+            bejelentkezes_sikeres = True
+            break
+
+    if bejelentkezes_sikeres:
+        messagebox.showinfo("Bejelentkezés", "Sikeres bejelentkezés!")
+        reset_fields()
+    else:
+        messagebox.showerror("Hiba", "Hibás felhasználónév vagy jelszó!")
+
+def reset_fields():
+    felhasznalonev_entry.delete(0, tk.END)
+    jelszo_entry.delete(0, tk.END)
+
+# A Tkinter ablak létrehozása
+root = tk.Tk()
+root.title("Bejelentkezés")
+
+# Felhasználónév és jelszó beviteli mezők létrehozása
+felhasznalonev_label = tk.Label(root, text="Felhasználónév:")
+felhasznalonev_label.pack()
+
+felhasznalonev_entry = tk.Entry(root)
+felhasznalonev_entry.pack()
+
+jelszo_label = tk.Label(root, text="Jelszó:")
+jelszo_label.pack()
+
+jelszo_entry = tk.Entry(root, show="*")  # A jelszó mező tartalmát csillagokkal jelenítjük meg
+jelszo_entry.pack()
+
+# Bejelentkezés gomb létrehozása
+bejelentkezes_gomb = tk.Button(root, text="Bejelentkezés", command=bejelentkezes)
+bejelentkezes_gomb.pack()
+
+# Az ablak megjelenítése
+root.mainloop()
