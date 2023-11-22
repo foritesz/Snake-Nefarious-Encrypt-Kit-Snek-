@@ -21,7 +21,7 @@ def regisztracio():
 def felhasznalonev():
     felhasznalo_email=input("Kérek egy felhasználói nevet (email): ")
     while " " in felhasznalo_email:
-        felhasznalo_email = input("Nem megfelelő az email!\nKérek egy felhasználói nevet (email): ")
+        felhasznalo_email = input("Nem megfelelő az email!\nKérek egy felhasználói nevet: ")
     return felhasznalo_email
 
 def jelszo_bekerese():
